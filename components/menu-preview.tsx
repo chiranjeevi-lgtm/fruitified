@@ -1,77 +1,5 @@
 import Image from "next/image"
 
-const bowls = [
-  {
-    name: "Acai Power Bowl",
-    description: "Acai, banana, strawberries, blueberries, coconut flakes & granola",
-    price: "₹299",
-    image: "/images/menu-bowl-1.jpg",
-  },
-  {
-    name: "Tropical Mango Bowl",
-    description: "Fresh mango, passion fruit, chia seeds & coconut flakes",
-    price: "₹279",
-    image: "/images/menu-bowl-2.jpg",
-  },
-  {
-    name: "Green Vitality Bowl",
-    description: "Kiwi, dragon fruit, pumpkin seeds & fresh mint",
-    price: "₹259",
-    image: "/images/menu-bowl-3.jpg",
-  },
-]
-
-const juices = [
-  {
-    name: "Sunrise Orange",
-    description: "Cold-pressed fresh oranges with a hint of ginger",
-    price: "₹149",
-    image: "/images/menu-juice-1.jpg",
-  },
-  {
-    name: "Green Detox",
-    description: "Spinach, apple, celery & ginger cold-pressed blend",
-    price: "₹179",
-    image: "/images/menu-juice-2.jpg",
-  },
-  {
-    name: "Watermelon Mint Cooler",
-    description: "Fresh watermelon with mint and a squeeze of lime",
-    price: "₹129",
-    image: "/images/menu-juice-3.jpg",
-  },
-]
-
-function MenuCard({
-  item,
-}: {
-  item: { name: string; description: string; price: string; image: string }
-}) {
-  return (
-    <div className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
-      <div className="relative aspect-[4/3] overflow-hidden">
-        <Image
-          src={item.image}
-          alt={item.name}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
-      </div>
-      <div className="p-5">
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="text-lg font-semibold text-foreground">{item.name}</h3>
-          <span className="shrink-0 rounded-full bg-primary/10 px-3 py-1 text-sm font-bold text-primary">
-            {item.price}
-          </span>
-        </div>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {item.description}
-        </p>
-      </div>
-    </div>
-  )
-}
 
 export default function MenuPreview() {
   return (
@@ -86,29 +14,31 @@ export default function MenuPreview() {
           </p>
         </div>
 
-        {/* Fruit Bowls */}
-        <div className="mb-12">
-          <h3 className="mb-6 text-center text-xl font-semibold text-secondary">
-            Fruit Bowls
-          </h3>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {bowls.map((item) => (
-              <MenuCard key={item.name} item={item} />
-            ))}
+        {/* Juice Highlight */}
+        <div className="mb-12 flex flex-col items-center gap-6 rounded-2xl bg-background p-8 shadow-sm md:flex-row md:gap-10">
+          <div className="relative h-52 w-52 shrink-0 overflow-hidden rounded-2xl shadow-lg">
+            <Image
+              src="/images/fruitified-orange.jpeg"
+              alt="Fruitified orange juice"
+              fill
+              className="object-cover"
+              sizes="208px"
+            />
+          </div>
+          <div className="text-center md:text-left">
+            <h3 className="text-2xl font-bold text-foreground">Pure. Fresh. Delivered.</h3>
+            <p className="mt-2 text-muted-foreground">
+              Cold-pressed juices and handcrafted fruit bowls made daily with 100% natural ingredients — no sugar, no preservatives, just goodness.
+            </p>
+            <a
+              href="/menu"
+              className="mt-5 inline-block rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:brightness-110"
+            >
+              View Full Menu →
+            </a>
           </div>
         </div>
 
-        {/* Juices */}
-        <div>
-          <h3 className="mb-6 text-center text-xl font-semibold text-secondary">
-            Fresh Juices
-          </h3>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {juices.map((item) => (
-              <MenuCard key={item.name} item={item} />
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   )

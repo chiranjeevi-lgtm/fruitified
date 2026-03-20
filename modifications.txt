@@ -1,0 +1,6 @@
+change why choose freshbowl to why choose fruitfied and also below that section add who do we serve and add the content as card components:
+corporate orders
+catering
+party orders
+Hospitals
+hostels

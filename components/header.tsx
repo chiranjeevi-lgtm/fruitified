@@ -6,10 +6,11 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#menu", label: "Menu" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/menu", label: "Menu" },
+  { href: "/gallery", label: "Our Specials" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ]
 
 export default function Header() {
@@ -19,7 +20,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-card/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         {/* Logo */}
-        <Link href="#home" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/images/fruitified-logo-Photoroom.png"
             alt="FRUITIFIED by Kamala logo"
@@ -41,7 +42,7 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href="#contact"
+            href="/#contact"
             className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:brightness-110"
           >
             Order Now
@@ -80,7 +81,7 @@ export default function Header() {
             ))}
             <li className="pt-2">
               <Link
-                href="#contact"
+                href="/#contact"
                 className="block rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:brightness-110"
                 onClick={() => setMobileMenuOpen(false)}
               >
