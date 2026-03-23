@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   description:
     'Order fresh, handcrafted fruit bowls and cold-pressed juices delivered to your door. 100% natural, no preservatives, made with love in Secunderabad.',
   keywords: ['fruit bowls', 'fresh juice', 'cloud kitchen', 'healthy food', 'Secunderabad', 'Hyderabad', 'delivery', 'FRUITIFIED'],
+  icons: {
+    icon: '/favicon.png',
+  },
 }
 
 export const viewport: Viewport = {
