@@ -7,7 +7,7 @@ export default function Hero() {
       id="home"
       className="relative overflow-hidden bg-card"
     >
-      <div className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-10 px-4 py-16 lg:flex-row lg:gap-16 lg:px-8 lg:py-24">
+      <div className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-10 px-4 pt-36 pb-16 lg:flex-row lg:gap-16 lg:px-8 lg:pt-44 lg:pb-24">
         {/* Text Content */}
         <div className="flex-1 text-center lg:text-left">
           <h1 className="text-balance text-4xl font-extrabold leading-tight text-foreground md:text-5xl lg:text-6xl">

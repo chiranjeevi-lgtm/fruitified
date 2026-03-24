@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
@@ -15,34 +16,56 @@ const navLinks = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const router = useRouter()
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    const hash = href.includes("#") ? href.split("#")[1] : null
+    if (!hash) return
+    e.preventDefault()
+    const el = document.getElementById(hash)
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" })
+    } else {
+      router.push(href)
+    }
+  }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-card/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
+    <header className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-all duration-300 ${scrolled ? "bg-white shadow-md" : "bg-transparent"}`}>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-0 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/images/fruitified-logo-Photoroom.png"
             alt="FRUITIFIED by Kamala logo"
-            width={70}
-            height={70}
-            className="object-contain"
+            width={130}
+            height={130}
+            className="-my-4 object-contain drop-shadow-md"
           />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-8 md:flex translate-y-3" aria-label="Main navigation">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="text-sm font-semibold text-foreground drop-shadow transition-colors hover:text-primary"
             >
               {link.label}
             </Link>
           ))}
           <Link
             href="/#contact"
+            onClick={(e) => handleNavClick(e, "/#contact")}
             className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:brightness-110"
           >
             Order Now
@@ -52,7 +75,7 @@ export default function Header() {
         {/* Mobile Hamburger */}
         <button
           type="button"
-          className="rounded-md p-2 text-foreground md:hidden"
+          className="rounded-md p-2 text-foreground drop-shadow md:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -73,7 +96,7 @@ export default function Header() {
                 <Link
                   href={link.href}
                   className="block rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => { handleNavClick(e, link.href); setMobileMenuOpen(false) }}
                 >
                   {link.label}
                 </Link>
@@ -83,7 +106,7 @@ export default function Header() {
               <Link
                 href="/#contact"
                 className="block rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:brightness-110"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => { handleNavClick(e, "/#contact"); setMobileMenuOpen(false) }}
               >
                 Order Now
               </Link>

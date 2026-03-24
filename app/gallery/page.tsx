@@ -56,7 +56,7 @@ export default function SpecialsPage() {
       <Header />
       <main className="min-h-screen bg-background">
         {/* Hero heading */}
-        <div className="bg-card py-16 text-center">
+        <div className="bg-card pb-16 pt-32 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">
             Fresh & Natural
           </p>

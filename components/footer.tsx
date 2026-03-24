@@ -39,8 +39,8 @@ export default function Footer() {
               <Image
                 src="/images/fruitified-logo-Photoroom.png"
                 alt="FRUITIFIED by Kamala logo"
-                width={90}
-                height={90}
+                width={130}
+                height={130}
                 className="object-contain"
               />
               <span className="flex flex-col leading-tight">

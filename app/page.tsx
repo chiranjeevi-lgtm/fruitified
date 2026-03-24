@@ -9,9 +9,11 @@ import Footer from "@/components/footer"
 export default function Page() {
   return (
     <>
-      <Header />
-      <main>
+      <div className="relative">
+        <Header />
         <Hero />
+      </div>
+      <main>
         <Features />
         <MenuPreview />
         <About />
