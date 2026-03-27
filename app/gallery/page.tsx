@@ -48,6 +48,14 @@ const specials = [
     image: "/gallery/Banana-shake.jpeg",
     tag: "High Protein",
   },
+  {
+    name: "Pineapple Juice",
+    subtitle: null,
+    description: "Freshly extracted pineapple juice — tangy, tropical, and naturally refreshing.",
+    price: "",
+    image: "/gallery/PineAppleJuice.jpeg",
+    tag: "Tropical",
+  },
 ]
 
 export default function SpecialsPage() {
