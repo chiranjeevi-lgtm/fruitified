@@ -21,7 +21,7 @@ const specials = [
     subtitle: null,
     description: "Hydrating and cooling summer refresher.",
     price: "₹79",
-    image: "/gallery/WaterMelon-juice.jpeg",
+    image: "/gallery/WaterMelon.jpeg",
     tag: "Summer Special",
   },
   {
@@ -37,7 +37,7 @@ const specials = [
     subtitle: null,
     description: "100% fresh pomegranate juice, rich in antioxidants.",
     price: "₹279",
-    image: "/gallery/Pomegranate-juice.jpeg",
+    image: "/gallery/pomegranate.jpeg",
     tag: "Premium",
   },
   {
@@ -87,26 +87,17 @@ export default function SpecialsPage() {
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover brightness-110 contrast-105 saturate-110 transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
 
                 {/* Content */}
                 <div className="flex flex-1 flex-col p-6">
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <h2 className="text-xl font-bold text-foreground">{item.name}</h2>
-                      {item.subtitle && (
-                        <p className="mt-0.5 text-xs font-medium text-primary">{item.subtitle}</p>
-                      )}
-                    </div>
-                    <span className="shrink-0 rounded-2xl bg-primary/10 px-4 py-1.5 text-lg font-extrabold text-primary">
-                      {item.price}
-                    </span>
-                  </div>
+                  <h2 className="text-xl font-bold text-foreground">{item.name}</h2>
+                  {item.subtitle && (
+                    <p className="mt-0.5 text-xs font-medium text-primary">{item.subtitle}</p>
+                  )}
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                     {item.description}
                   </p>
