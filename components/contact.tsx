@@ -15,6 +15,8 @@ export default function Contact() {
     message: "",
   })
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -24,14 +26,28 @@ export default function Contact() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    setSubmitted(true)
-    setTimeout(() => {
-      setFormData({ name: "", email: "", phone: "", message: "" })
-      setSubmitted(false)
-    }, 3000)
+    setLoading(true)
+    setError(false)
+    try {
+      const res = await fetch("https://formspree.io/f/xlgobejn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(formData),
+      })
+      if (res.ok) {
+        setSubmitted(true)
+        setFormData({ name: "", email: "", phone: "", message: "" })
+        setTimeout(() => setSubmitted(false), 4000)
+      } else {
+        setError(true)
+      }
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -105,6 +121,11 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-3">
+                {error && (
+                  <div className="rounded-lg bg-red-50 p-3 text-red-700 text-sm">
+                    Something went wrong. Please try again or email us directly.
+                  </div>
+                )}
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="mb-1 block text-xs font-medium text-foreground">
@@ -168,9 +189,10 @@ export default function Contact() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-primary text-sm font-semibold hover:brightness-110"
+                  disabled={loading}
+                  className="w-full bg-primary text-sm font-semibold hover:brightness-110 disabled:opacity-60"
                 >
-                  Send Message
+                  {loading ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             )}
