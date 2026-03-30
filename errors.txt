@@ -1,0 +1,19 @@
+17:03:50.924 
+To use pnpm@9.x, manually opt in using corepack (https://vercel.com/docs/deployments/configure-a-build#corepack)
+17:03:50.961 
+Installing dependencies...
+17:03:51.847 
+ ERR_PNPM_OUTDATED_LOCKFILE  Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with <ROOT>/package.json
+17:03:51.847 
+17:03:51.848 
+Note that in CI environments this setting is true by default. If you still need to run install in such cases, use "pnpm install --no-frozen-lockfile"
+17:03:51.848 
+17:03:51.848 
+  Failure reason:
+17:03:51.848 
+  specifiers in the lockfile don't match specifiers in package.json:
+17:03:51.848 
+* 1 dependencies were added: resend@^6.9.4
+17:03:51.848 
+17:03:51.868 
+Error: Command "pnpm install" exited with 1
