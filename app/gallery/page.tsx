@@ -56,6 +56,14 @@ const specials = [
     image: "/gallery/PineAppleJuice.jpeg",
     tag: "Tropical",
   },
+  {
+    name: "Mango Juice",
+    subtitle: null,
+    description: "Luscious fresh mango juice — sweet, rich, and bursting with tropical flavour.",
+    price: "",
+    image: "/gallery/Mango-juice.jpeg",
+    tag: "Seasonal",
+  },
 ]
 
 export default function SpecialsPage() {
