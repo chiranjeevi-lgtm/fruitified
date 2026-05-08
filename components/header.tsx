@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/gallery", label: "Our Specials" },
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
+  { href: "/careers", label: "Careers" },
 ]
 
 export default function Header() {
