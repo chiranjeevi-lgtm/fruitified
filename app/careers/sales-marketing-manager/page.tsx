@@ -23,7 +23,7 @@ export default function SalesMarketingManagerPage() {
             Sales & Marketing <span className="text-primary">Manager</span>
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Full-time · Bengaluru · 2+ Years Experience
+            Full-time · Hyderabad · 2+ Years Experience
           </p>
         </div>
 
@@ -34,7 +34,7 @@ export default function SalesMarketingManagerPage() {
               <p>
                 We're looking for a driven Sales & Marketing Manager to lead our brand's growth
                 strategy. You'll own end-to-end marketing campaigns, manage a small team, and work
-                directly with the founders to expand FRUITIFIED's reach across Bengaluru and beyond.
+                directly with the founders to expand FRUITIFIED's reach across Hyderabad and beyond.
               </p>
             </Section>
 

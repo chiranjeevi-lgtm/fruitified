@@ -23,7 +23,7 @@ export default function SalesMarketingInternPage() {
             Sales & Marketing <span className="text-primary">Intern</span>
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Internship · Bengaluru · Freshers Welcome
+            Internship · Hyderabad · Freshers Welcome
           </p>
         </div>
 
