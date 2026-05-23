@@ -15,7 +15,7 @@ export default function SalesMarketingManagerPage() {
     <>
       <Header />
       <main className="min-h-screen bg-background">
-        <div className="bg-card pb-12 pt-32 text-center">
+        <div className="pb-12 pt-32 text-center" style={{ backgroundColor: "#faf5eb" }}>
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">
             Careers at FRUITIFIED
           </p>

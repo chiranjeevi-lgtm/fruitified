@@ -2,7 +2,7 @@ import { Leaf, Heart, MapPin } from "lucide-react"
 
 export default function About() {
   return (
-    <section id="about" className="py-16 lg:py-24">
+    <section id="about" className="py-16 lg:py-24" style={{ backgroundColor: "#faf5eb" }}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">

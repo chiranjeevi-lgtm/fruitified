@@ -3,21 +3,24 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import { usePathname, useRouter } from "next/navigation"
+import { Menu, X, Truck } from "lucide-react"
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/menu", label: "Menu" },
-  { href: "/gallery", label: "Our Specials" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
-  { href: "/careers", label: "Careers" },
+  { href: "/", label: "HOME" },
+  { href: "/about", label: "ABOUT" },
+  { href: "/menu", label: "MENU" },
+  { href: "/gallery", label: "OUR SPECIALS" },
+  { href: "/b2b", label: "B2B" },
+  { href: "/gifts", label: "GIFTS" },
+  { href: "/careers", label: "CAREERS" },
+  { href: "/#contact", label: "CONTACT" },
 ]
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
   const router = useRouter()
 
   useEffect(() => {
@@ -39,44 +42,62 @@ export default function Header() {
   }
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-all duration-300 ${scrolled ? "bg-white shadow-md" : "bg-transparent"}`}>
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-0 lg:px-8">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${scrolled ? "shadow-md" : ""}`}
+      style={{ backgroundColor: "#faf5eb" }}
+    >
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-2 lg:px-10">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex-shrink-0">
           <Image
             src="/images/fruitified-logo-Photoroom.png"
             alt="FRUITIFIED by Kamala logo"
-            width={130}
-            height={130}
-            className="-my-4 object-contain drop-shadow-md"
+            width={115}
+            height={115}
+            className="object-contain"
           />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-8 md:flex translate-y-3" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="text-sm font-semibold text-foreground drop-shadow transition-colors hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/#contact"
-            onClick={(e) => handleNavClick(e, "/#contact")}
-            className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:brightness-110"
-          >
-            Order Now
-          </Link>
+        <nav className="hidden items-center gap-6 xl:flex" aria-label="Main navigation">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`flex items-center text-[13px] font-bold tracking-wide transition-colors hover:text-[#b5451b] ${
+                  isActive
+                    ? "text-[#1e3a0f] underline underline-offset-4 decoration-2 decoration-[#1e3a0f]"
+                    : "text-[#1e3a0f]"
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
         </nav>
 
-        {/* Mobile Hamburger */}
+        {/* Right-side icons */}
+        <div className="hidden items-center gap-2 xl:flex">
+          <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-background px-3 py-2 shadow-sm">
+            <Truck className="h-5 w-5 flex-shrink-0 text-[#1e3a0f]" />
+            <div className="leading-tight">
+              <p className="text-[9px] font-semibold uppercase tracking-wider text-gray-400">
+                DELIVERING
+              </p>
+              <p className="text-[11px] font-extrabold uppercase tracking-wide text-[#1e3a0f]">
+                ACROSS INDIA
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile hamburger */}
         <button
           type="button"
-          className="rounded-md p-2 text-foreground drop-shadow md:hidden"
+          className="rounded-md p-2 text-[#1e3a0f] xl:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -88,29 +109,26 @@ export default function Header() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <nav
-          className="border-t border-border bg-card px-4 pb-4 md:hidden"
+          className="border-t border-gray-100 bg-background px-4 pb-4 xl:hidden"
           aria-label="Mobile navigation"
         >
-          <ul className="flex flex-col gap-1 pt-2">
+          <ul className="flex flex-col gap-0.5 pt-2">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="block rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                  className="flex items-center justify-between rounded-md px-3 py-2.5 text-sm font-bold text-[#1e3a0f] transition-colors hover:bg-gray-50 hover:text-[#b5451b]"
                   onClick={(e) => { handleNavClick(e, link.href); setMobileMenuOpen(false) }}
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
-            <li className="pt-2">
-              <Link
-                href="/#contact"
-                className="block rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:brightness-110"
-                onClick={(e) => { handleNavClick(e, "/#contact"); setMobileMenuOpen(false) }}
-              >
-                Order Now
-              </Link>
+            <li className="mt-2 border-t border-gray-100 pt-3">
+              <div className="flex items-center gap-2 px-3">
+                <Truck className="h-4 w-4 text-[#1e3a0f]" />
+                <span className="text-sm font-bold text-[#1e3a0f]">Delivering in Hyderabad</span>
+              </div>
             </li>
           </ul>
         </nav>

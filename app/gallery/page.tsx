@@ -9,60 +9,52 @@ export const metadata = {
 
 const specials = [
   {
-    name: "ABC Juice",
-    subtitle: "Apple, Beetroot & Carrot blend",
-    description: "A natural immunity booster rich in antioxidants and essential nutrients.",
-    price: "₹199",
-    image: "/gallery/ABC-juice.jpeg",
-    tag: "Bestseller",
+    name: "Classic Fruit Bowl",
+    subtitle: null,
+    description: "A vibrant medley of seasonal fruits, perfectly cut and served fresh daily.",
+    price: "₹93.45",
+    image: "/images/specials/classic-fruit-bowl.jpeg",
+    tag: "Seasonal Pick",
   },
   {
-    name: "Watermelon Splash",
+    name: "Creamy Mango Smoothie",
     subtitle: null,
-    description: "Hydrating and cooling summer refresher.",
-    price: "₹79",
-    image: "/gallery/WaterMelon.jpeg",
-    tag: "Summer Special",
+    description: "Thick, luscious mango blended smooth — a true summer indulgence.",
+    price: "₹135.45",
+    image: "/images/specials/mango-smoothie.jpeg",
+    tag: "Summer Favourite",
   },
   {
-    name: "Classic Orange Juice",
+    name: "Royal Mango Lassi",
     subtitle: null,
-    description: "Freshly extracted orange juice, naturally sweet & tangy.",
-    price: "₹79",
-    image: "/gallery/Classic-Orange-Juice.jpeg",
-    tag: "Fan Favourite",
-  },
-  {
-    name: "Pomegranate Power",
-    subtitle: null,
-    description: "100% fresh pomegranate juice, rich in antioxidants.",
-    price: "₹279",
-    image: "/gallery/pomegranate.jpeg",
-    tag: "Premium",
+    description: "Mango-kissed yoghurt lassi — creamy, chilled and irresistibly rich.",
+    price: "₹82.95",
+    image: "/images/specials/royal-mango-lassi.jpeg",
+    tag: "Refreshing Sip",
   },
   {
     name: "Banana Protein Shake",
     subtitle: null,
     description: "High-fiber oats blended with banana & milk. Wholesome and filling.",
-    price: "₹199",
+    price: "₹103.95",
     image: "/gallery/Banana-shake.jpeg",
     tag: "High Protein",
   },
   {
-    name: "Pineapple Juice",
+    name: "Coconut Refresh Drink",
     subtitle: null,
-    description: "Freshly extracted pineapple juice — tangy, tropical, and naturally refreshing.",
-    price: "",
-    image: "/gallery/PineAppleJuice.jpeg",
-    tag: "Tropical",
+    description: "Fresh tender coconut water — nature's electrolyte, pure and hydrating.",
+    price: "₹82.95",
+    image: "/images/specials/coconut-refresh-drink.jpeg",
+    tag: "Natural Hydration",
   },
   {
-    name: "Mango Juice",
+    name: "Farm Fresh Sapota Juice",
     subtitle: null,
-    description: "Luscious fresh mango juice — sweet, rich, and bursting with tropical flavour.",
-    price: "",
-    image: "/gallery/Mango-juice.jpeg",
-    tag: "Seasonal",
+    description: "Naturally sweet sapota blended fresh — rich, earthy and full of goodness.",
+    price: "₹103.95",
+    image: "/images/specials/sapota-juice-image.jpeg",
+    tag: "Farm Fresh",
   },
 ]
 
@@ -70,9 +62,9 @@ export default function SpecialsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen" style={{ backgroundColor: "#faf5eb" }}>
         {/* Hero heading */}
-        <div className="bg-card pb-16 pt-32 text-center">
+        <div className="pb-16 pt-32 text-center" style={{ backgroundColor: "#faf5eb" }}>
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">
             Fresh & Natural
           </p>

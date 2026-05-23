@@ -1,8 +1,11 @@
 import Header from "@/components/header"
 import Hero from "@/components/hero"
-import Features from "@/components/features"
-import MenuPreview from "@/components/menu-preview"
-import About from "@/components/about"
+import TrustBar from "@/components/trust-bar"
+import ShowcaseCards from "@/components/showcase-cards"
+import SpecialsBanner from "@/components/specials-banner"
+import B2BBanner from "@/components/b2b-banner"
+import GiftsBanner from "@/components/gifts-banner"
+import CareersBanner from "@/components/careers-banner"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 
@@ -14,9 +17,12 @@ export default function Page() {
         <Hero />
       </div>
       <main>
-        <Features />
-        <MenuPreview />
-        <About />
+        <TrustBar />
+        <ShowcaseCards />
+        <SpecialsBanner />
+        <B2BBanner />
+        <GiftsBanner />
+        <CareersBanner />
         <Contact />
       </main>
       <Footer />

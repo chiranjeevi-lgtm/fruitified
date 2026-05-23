@@ -51,7 +51,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="bg-card py-16 lg:py-24">
+    <section id="contact" className="py-16 lg:py-24" style={{ backgroundColor: "#faf5eb" }}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mb-12 text-center">
           <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">
