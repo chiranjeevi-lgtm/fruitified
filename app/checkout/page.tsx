@@ -226,6 +226,16 @@ export default function CheckoutPage() {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const rzp = new (window as any).Razorpay(options)
+
+      // Handle payment failure inside the modal (UPI timeout, bank decline, etc.)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      rzp.on("payment.failed", function (response: any) {
+        const desc = response?.error?.description || "Payment failed. Please try again."
+        setPaymentError(desc)
+        setSubmitting(false)
+        rzp.close()
+      })
+
       rzp.open()
     } catch (err) {
       console.error("Payment error:", err)
@@ -676,6 +686,15 @@ export default function CheckoutPage() {
 
                   {/* Divider */}
                   <div style={{ height: "1px", backgroundColor: "#e8e0d0" }} />
+
+                  {/* UPI tip */}
+                  <div style={{
+                    backgroundColor: "rgba(74,124,47,0.06)", border: "1px solid rgba(74,124,47,0.18)",
+                    borderRadius: "10px", padding: "12px 16px",
+                    fontSize: "12px", color: "#4a7c2f", lineHeight: 1.6,
+                  }}>
+                    💡 <strong>Tip:</strong> For the smoothest experience, pay by <strong>Card</strong> or enter your <strong>UPI ID</strong> manually — avoid UPI QR scan which can sometimes timeout.
+                  </div>
 
                   {/* Payment error */}
                   {paymentError && (
