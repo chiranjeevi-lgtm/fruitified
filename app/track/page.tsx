@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -29,7 +29,7 @@ type Order = {
   payment_id: string
 }
 
-export default function TrackPage() {
+function TrackContent() {
   const searchParams                = useSearchParams()
   const [tokenInput, setTokenInput] = useState(searchParams.get("token") ?? "")
   const [order, setOrder]           = useState<Order | null>(null)
@@ -289,5 +289,13 @@ export default function TrackPage() {
       </main>
       <Footer />
     </>
+  )
+}
+
+export default function TrackPage() {
+  return (
+    <Suspense fallback={null}>
+      <TrackContent />
+    </Suspense>
   )
 }
