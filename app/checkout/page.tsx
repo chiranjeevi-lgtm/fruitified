@@ -149,7 +149,21 @@ export default function CheckoutPage() {
       const orderRes = await fetch(`${backendUrl}/api/create-order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: orderTotal || 1, currency: "INR" }),
+        body: JSON.stringify({
+          amount: orderTotal || 1,
+          currency: "INR",
+          notes: {
+            customer_name: form.name,
+            phone:         form.phone,
+            email:         form.email,
+            address_line1: form.address_line1,
+            address_line2: form.address_line2,
+            city:          form.city,
+            state:         form.state,
+            pincode:       form.pincode,
+            items:         JSON.stringify(items.map(i => ({ name: i.name, qty: i.qty, weight: i.weight, price: i.price }))),
+          },
+        }),
       })
       const orderData = await orderRes.json()
       if (!orderRes.ok) throw new Error(orderData.error)
