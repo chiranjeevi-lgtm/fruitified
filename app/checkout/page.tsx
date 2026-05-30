@@ -82,10 +82,11 @@ export default function CheckoutPage() {
   const { items, updateQty, removeItem, clearCart, totalItems } = useCart()
   const [form, setForm]             = useState<FormData>(EMPTY_FORM)
   const [errors, setErrors]         = useState<Partial<FormData>>({})
-  const [submitting, setSubmitting] = useState(false)
-  const [submitted, setSubmitted]   = useState(false)
-  const [token, setToken]           = useState("")
-  const [paymentId, setPaymentId]   = useState("")
+  const [submitting, setSubmitting]     = useState(false)
+  const [submitted, setSubmitted]       = useState(false)
+  const [token, setToken]               = useState("")
+  const [paymentId, setPaymentId]       = useState("")
+  const [paymentError, setPaymentError] = useState("")
   const savedItemsRef               = useRef<CartItem[]>([])
 
   // Load Razorpay checkout script
@@ -138,6 +139,7 @@ export default function CheckoutPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!validate()) return
+    setPaymentError("")
     setSubmitting(true)
 
     try {
@@ -167,34 +169,43 @@ export default function CheckoutPage() {
           razorpay_order_id: string
           razorpay_signature: string
         }) => {
-          // Step 3 — verify payment and save order on backend
-          const confirmRes = await fetch(`${backendUrl}/api/confirm-order`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              ...response,
-              customer_name: form.name,
-              phone:         form.phone,
-              email:         form.email,
-              address_line1: form.address_line1,
-              address_line2: form.address_line2,
-              city:          form.city,
-              state:         form.state,
-              pincode:       form.pincode,
-              notes:         form.notes,
-              items:    items.map((i) => ({ slug: i.name, name: i.name, qty: i.qty, weight: i.weight, price: i.price })),
-              total:    orderTotal,
-            }),
-          })
-          const confirmData = await confirmRes.json()
-          if (!confirmRes.ok) throw new Error(confirmData.error)
+          try {
+            // Step 3 — verify payment and save order on backend
+            const confirmRes = await fetch(`${backendUrl}/api/confirm-order`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                ...response,
+                customer_name: form.name,
+                phone:         form.phone,
+                email:         form.email,
+                address_line1: form.address_line1,
+                address_line2: form.address_line2,
+                city:          form.city,
+                state:         form.state,
+                pincode:       form.pincode,
+                notes:         form.notes,
+                items:    items.map((i) => ({ slug: i.name, name: i.name, qty: i.qty, weight: i.weight, price: i.price })),
+                total:    orderTotal,
+              }),
+            })
+            const confirmData = await confirmRes.json()
+            if (!confirmRes.ok) {
+              setPaymentError(confirmData.error || "Payment confirmed but order could not be saved. Please contact support with your Payment ID: " + response.razorpay_payment_id)
+              setSubmitting(false)
+              return
+            }
 
-          savedItemsRef.current = [...items]
-          setPaymentId(response.razorpay_payment_id)
-          setToken(confirmData.token)
-          clearCart()
-          setSubmitted(true)
-          setSubmitting(false)
+            savedItemsRef.current = [...items]
+            setPaymentId(response.razorpay_payment_id)
+            setToken(confirmData.token)
+            clearCart()
+            setSubmitted(true)
+            setSubmitting(false)
+          } catch {
+            setPaymentError("Payment was successful but we could not confirm your order. Please contact support with Payment ID: " + response.razorpay_payment_id)
+            setSubmitting(false)
+          }
         },
         modal: { ondismiss: () => setSubmitting(false) },
       }
@@ -651,6 +662,17 @@ export default function CheckoutPage() {
 
                   {/* Divider */}
                   <div style={{ height: "1px", backgroundColor: "#e8e0d0" }} />
+
+                  {/* Payment error */}
+                  {paymentError && (
+                    <div style={{
+                      backgroundColor: "rgba(181,69,27,0.08)", border: "1px solid rgba(181,69,27,0.25)",
+                      borderRadius: "10px", padding: "14px 16px",
+                      fontSize: "13px", color: PRICE, fontWeight: 600, lineHeight: 1.6,
+                    }}>
+                      {paymentError}
+                    </div>
+                  )}
 
                   {/* Submit button */}
                   <button
