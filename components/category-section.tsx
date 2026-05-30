@@ -12,12 +12,14 @@ const categories = [
     image: "/images/menu-bowl-1.jpg",
     bg: "#fce8e8",
   },
+  /* JUICE_HIDDEN_START — restore by un-commenting this object
   {
     name: "COLD PRESSED\nJUICES",
     href: "/menu",
     image: "/images/menu-juice-1.jpg",
     bg: "#fef9e0",
   },
+  JUICE_HIDDEN_END */
   {
     name: "SMOOTHIE\nBOWLS",
     href: "/menu",

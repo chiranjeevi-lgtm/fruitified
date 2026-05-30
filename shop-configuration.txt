@@ -1,0 +1,106 @@
+================================================================================
+  SHOP PAGE CONFIGURATION
+================================================================================
+
+CURRENTLY VISIBLE ON SHOP
+--------------------------
+  - Banginapalli Mangoes   (slug: banginapalli-mangoes)
+  - Dasheri Mangoes        (slug: dasheri-mangoes)
+  - Alphonso Mangoes       (slug: alphonso-mangoes)
+  - Rasalu Mangoes         (slug: rasalu-mangoes)
+  - Custard Apple          (slug: custard-apple)
+
+
+CURRENTLY HIDDEN FROM SHOP
+---------------------------
+  - Kashmiri Apples        (slug: apple)
+  - Pomegranate            (slug: pomegranate)
+  - Guava                  (slug: guava)
+  - Blueberry              (slug: blueberry)
+
+
+HOW TO RE-ADD A HIDDEN FRUIT TO THE SHOP
+-----------------------------------------
+  1. Open: FRUITIFIED-BY-KAMALA/lib/fruits-data.ts
+  2. Find the fruit by its name
+  3. Remove the line:  shopVisible: false
+     (or change it to: shopVisible: true)
+  4. Save the file
+  5. The fruit will appear on the shop page immediately
+
+  Example — to bring back Guava:
+  Find the guava entry and delete this line:
+      shopVisible: false,
+
+
+HOW TO HIDE A VISIBLE FRUIT
+----------------------------
+  1. Open: FRUITIFIED-BY-KAMALA/lib/fruits-data.ts
+  2. Find the fruit by its name
+  3. Add this line inside the fruit object (after the price line):
+       shopVisible: false,
+  4. Save the file
+
+
+NOTES
+-----
+  - Hiding a fruit from the shop does NOT delete it from the data file.
+  - The fruit detail page (/shop/slug) still works even when hidden.
+  - The fruit still appears on other pages (menu, fruits page, etc.).
+  - Only the shop grid and category filters are affected.
+
+================================================================================
+
+
+FRONTEND DEPLOYMENT STEPS
+================================================================================
+
+Every time you make changes to the frontend code, deploy like this:
+
+  STEP 1 — Commit and push to GitHub
+  ------------------------------------
+  Open terminal in the FRUITIFIED-BY-KAMALA folder and run:
+
+      git add .
+      git commit -m "describe what you changed"
+      git push
+
+  STEP 2 — Vercel auto-deploys
+  -----------------------------
+  Vercel detects the push automatically and starts a new build.
+  Takes about 2-3 minutes.
+
+  STEP 3 — Check it deployed
+  ---------------------------
+  Go to vercel.com → your project → Deployments tab.
+  You will see a new deployment at the top — it should say "Ready" in green.
+  Click "Visit" to open the live site and verify your changes.
+
+
+FIRST-TIME FRONTEND DEPLOYMENT (if not done yet)
+-------------------------------------------------
+  1. Open terminal in FRUITIFIED-BY-KAMALA folder
+  2. Run:
+       git init
+       git add .
+       git commit -m "Initial frontend"
+
+  3. Go to github.com → New repository
+     Name: fruitified-frontend
+     Visibility: Private
+     Do NOT initialize with README
+
+  4. Run the commands GitHub shows you to push the repo
+
+  5. Go to vercel.com → Add New Project → Import fruitified-frontend
+
+  6. Before clicking Deploy, add Environment Variables:
+       NEXT_PUBLIC_BACKEND_URL      = https://fruitified-backend-production.up.railway.app
+       NEXT_PUBLIC_RAZORPAY_KEY_ID  = rzp_live_Sv4fS3fj2JjJse
+
+  7. Click Deploy — takes 2-3 minutes
+
+  8. Once live, copy your Vercel URL and add it to Railway:
+     Railway → your backend service → Variables → FRONTEND_URL = your Vercel URL
+
+================================================================================

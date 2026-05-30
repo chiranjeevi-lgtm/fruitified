@@ -4,6 +4,7 @@ import TrustBar from "@/components/trust-bar"
 import ShowcaseCards from "@/components/showcase-cards"
 import SpecialsBanner from "@/components/specials-banner"
 import B2BBanner from "@/components/b2b-banner"
+import FruitsBanner from "@/components/fruits-banner"
 import GiftsBanner from "@/components/gifts-banner"
 import CareersBanner from "@/components/careers-banner"
 import Contact from "@/components/contact"
@@ -19,6 +20,7 @@ export default function Page() {
       <main>
         <TrustBar />
         <ShowcaseCards />
+        <FruitsBanner />
         <SpecialsBanner />
         <B2BBanner />
         <GiftsBanner />

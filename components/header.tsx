@@ -4,12 +4,14 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { Menu, X, Truck } from "lucide-react"
+import { Menu, X, Truck, ShoppingBasket } from "lucide-react"
+import { useCart } from "./cart-provider"
 
 const navLinks = [
   { href: "/", label: "HOME" },
   { href: "/about", label: "ABOUT" },
   { href: "/menu", label: "MENU" },
+  { href: "/shop", label: "SHOP" },
   { href: "/gallery", label: "OUR SPECIALS" },
   { href: "/b2b", label: "B2B" },
   { href: "/gifts", label: "GIFTS" },
@@ -22,6 +24,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+  const { totalItems } = useCart()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -81,6 +84,27 @@ export default function Header() {
 
         {/* Right-side icons */}
         <div className="hidden items-center gap-2 xl:flex">
+          {/* Cart button */}
+          <Link
+            href="/cart"
+            style={{ position: "relative", padding: "8px", display: "flex", alignItems: "center", color: "#1e3a0f" }}
+            aria-label="View basket"
+          >
+            <ShoppingBasket className="h-5 w-5" />
+            {totalItems > 0 && (
+              <span style={{
+                position: "absolute", top: "2px", right: "2px",
+                backgroundColor: "#b5451b", color: "#fff",
+                fontSize: "9px", fontWeight: 800,
+                borderRadius: "100px", minWidth: "16px", height: "16px",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                padding: "0 4px",
+              }}>
+                {totalItems}
+              </span>
+            )}
+          </Link>
+
           <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-background px-3 py-2 shadow-sm">
             <Truck className="h-5 w-5 flex-shrink-0 text-[#1e3a0f]" />
             <div className="leading-tight">

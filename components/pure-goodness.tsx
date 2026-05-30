@@ -9,6 +9,7 @@ const cards = [
     image: "/images/menu-bowl-1.jpg",
     bg: "#f0f7eb",
   },
+  /* JUICE_HIDDEN_START — restore by un-commenting this object
   {
     label: "Cold Pressed Juices",
     color: "#b5451b",
@@ -16,6 +17,7 @@ const cards = [
     image: "/images/menu-juice-1.jpg",
     bg: "#fef6ee",
   },
+  JUICE_HIDDEN_END */
   {
     label: "Smoothie Bowls",
     color: "#2563eb",

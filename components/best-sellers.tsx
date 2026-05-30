@@ -5,7 +5,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const products = [
   { name: "Classic Fruit Bowl",      price: "₹299",   tag: "Bestseller", image: "/images/menu-bowl-1.jpg",                      href: "/menu" },
-  { name: "Immunity Booster Juice",  price: "₹199",   tag: "Bestseller", image: "/gallery/ABC-juice.jpeg",                       href: "/menu" },
+  // JUICE_HIDDEN_START — restore next line when juices are re-enabled
+  // { name: "Immunity Booster Juice",  price: "₹199",   tag: "Bestseller", image: "/gallery/ABC-juice.jpeg",                       href: "/menu" },
+  // JUICE_HIDDEN_END
   { name: "Mango Smoothie Bowl",     price: "₹349",   tag: "",           image: "/images/menu-bowl-2.jpg",                      href: "/menu" },
   { name: "Premium Alphonso Box",    price: "₹1,299", tag: "",           image: "/gallery/Mango-juice.jpeg",                    href: "/gifts" },
   { name: "Gift Box – Medium",       price: "₹699",   tag: "",           image: "/images/gifts/festive-mango-wrapper.jpeg",     href: "/gifts" },

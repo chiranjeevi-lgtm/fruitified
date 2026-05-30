@@ -14,14 +14,6 @@ const cards = [
     external: true,
   },
   {
-    heading: "Fruit Juices",
-    tagline: "Cold-pressed goodness with zero preservatives.",
-    image: "/gallery/pomegranate.jpeg",
-    href: WA,
-    linkLabel: "Order Now",
-    external: true,
-  },
-  {
     heading: "Gifts",
     tagline: "Handpicked mangoes, beautifully packed for every occasion.",
     image: "/images/gifts/family gift box.jpeg",
@@ -55,7 +47,7 @@ export default function ShowcaseCards() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {cards.map((card) => (
             <div key={card.heading} style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
 

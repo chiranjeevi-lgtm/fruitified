@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Poppins, Inter } from 'next/font/google'
+import { CartProvider } from '@/components/cart-provider'
+import { CartDrawer } from '@/components/cart-drawer'
 
 import './globals.css'
 
@@ -38,7 +40,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} font-sans antialiased`}>
-        {children}
+        <CartProvider>
+          {children}
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   )

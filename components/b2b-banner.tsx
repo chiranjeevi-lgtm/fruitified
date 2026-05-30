@@ -1,12 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Store, Building2, ShoppingCart, Citrus } from "lucide-react"
+import { ArrowRight, Store, Building2, ShoppingCart } from "lucide-react"
+// JUICE_HIDDEN: import Citrus from "lucide-react" — restore alongside "Fruit Juice Places" partner
 
 const partners = [
-  { icon: Store,        label: "Fruit Shops"        },
-  { icon: Building2,    label: "Corporate Offices"  },
-  { icon: ShoppingCart, label: "Super Markets"      },
-  { icon: Citrus,       label: "Fruit Juice Places" },
+  { icon: Store,        label: "Fruit Shops"       },
+  { icon: Building2,    label: "Corporate Offices" },
+  { icon: ShoppingCart, label: "Super Markets"     },
+  // JUICE_HIDDEN_START — restore next line when juices are re-enabled
+  // { icon: Citrus, label: "Fruit Juice Places" },
+  // JUICE_HIDDEN_END
 ]
 
 export default function B2BBanner() {

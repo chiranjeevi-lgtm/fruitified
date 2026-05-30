@@ -48,6 +48,7 @@ const specials = [
     image: "/images/specials/coconut-refresh-drink.jpeg",
     tag: "Natural Hydration",
   },
+  /* JUICE_HIDDEN_START — restore by un-commenting this object
   {
     name: "Farm Fresh Sapota Juice",
     subtitle: null,
@@ -56,6 +57,7 @@ const specials = [
     image: "/images/specials/sapota-juice-image.jpeg",
     tag: "Farm Fresh",
   },
+  JUICE_HIDDEN_END */
 ]
 
 export default function SpecialsPage() {
